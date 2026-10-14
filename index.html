@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura — Unveil Your Mood Board</title>
+  
+  <!-- Favicon icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <!-- Google Fonts: Elegant Celestial + Clean Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Space Canvas (twinkling stars, glitter, cosmic dust) -->
+  <canvas id="space-canvas"></canvas>
+
+  <!-- Ambient Dynamic Aura Glow Sphere -->
+  <div id="ambient-glow" class="ambient-glow"></div>
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="logo" id="logo-btn" title="Reset Aura">
+      <span class="sparkle-icon">✦</span>
+      <span class="logo-text">AURA</span>
+      <span class="sparkle-icon">✦</span>
+    </div>
+    <div class="header-tag">Cosmic Mood Generator</div>
+  </header>
+
+  <!-- Main App Container -->
+  <main class="main-container">
+
+    <!-- ========================================== -->
+    <!-- 1. INPUT PAGE VIEW (Cosmic Glitter Aesthetic) -->
+    <!-- ========================================== -->
+    <section id="input-view" class="view-section active">
+      
+      <div class="hero-content">
+        <!-- Celestial Star Emblem -->
+        <div class="celestial-emblem">
+          <div class="orbit-ring"></div>
+          <div class="center-star">✧</div>
+        </div>
+
+        <!-- The Requested White Neon Sentence -->
+        <h1 class="neon-title">unveil your aura today</h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle">
+          Whisper your current mood into the cosmos to generate your personalized aura color, reflection, and aesthetic mood board.
+        </p>
+
+        <!-- Mood Input Box Form -->
+        <form id="mood-form" class="mood-input-form" autocomplete="off">
+          <div class="input-glow-wrapper">
+            <span class="input-icon">✦</span>
+            <input 
+              type="text" 
+              id="mood-input" 
+              placeholder="How are you feeling right now? (e.g. happy, calm, tired...)" 
+              aria-label="Enter your mood"
+              required
+            />
+            <button type="submit" id="submit-btn" class="glow-submit-btn">
+              <span>Reveal Aura</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick Mood Select Pills -->
+        <div class="quick-moods">
+          <span class="quick-label">Or choose an energy:</span>
+          <div class="mood-chips">
+            <button class="chip" data-mood="happy">Happy ☀️</button>
+            <button class="chip" data-mood="calm">Calm 🌊</button>
+            <button class="chip" data-mood="sad">Sad 🌧️</button>
+            <button class="chip" data-mood="anxious">Anxious 🌀</button>
+            <button class="chip" data-mood="excited">Excited ⚡</button>
+            <button class="chip" data-mood="tired">Tired 🌙</button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. RESULT MOOD BOARD VIEW -->
+    <!-- ========================================== -->
+    <section id="board-view" class="view-section hidden">
+      
+      <!-- Top Action Bar -->
+      <div class="board-top-bar">
+        <button id="back-btn" class="back-btn">
+          <span class="back-arrow">←</span>
+          <span>Unveil Another Aura</span>
+        </button>
+
+        <div class="search-badge">
+          <span>Tuned to:</span>
+          <strong id="searched-mood-badge">Happy</strong>
+        </div>
+      </div>
+
+      <!-- Aura Header Card -->
+      <header class="aura-result-header">
+        <div class="aura-badge">✦ COSMIC FREQUENCY READING ✦</div>
+        <h2 id="aura-name" class="aura-title">Solar Radiance Amber</h2>
+        <p id="aura-tagline" class="aura-tagline">High Vibrational • Warmth • Joy</p>
+      </header>
+
+      <!-- Main Mood Board Grid -->
+      <div class="mood-board-grid">
+        
+        <!-- Tile 1: The Quote Card -->
+        <div class="board-card quote-card">
+          <div class="card-glow-pill">Reflection</div>
+          <div class="quote-mark">“</div>
+          <blockquote id="aura-quote" class="quote-text">
+            You carry a pocket of sunshine wherever the universe takes you.
+          </blockquote>
+          <cite id="aura-author" class="quote-author">— Cosmic Whispers</cite>
+        </div>
+
+        <!-- Tile 2: Cosmic Energy Attributes (Element & Frequency) -->
+        <div class="board-card energy-card">
+          <div class="card-glow-pill">Vibration Matrix</div>
+          <div class="energy-row">
+            <div class="energy-item">
+              <span class="energy-label">Element</span>
+              <span id="aura-element" class="energy-val">Solar Fire</span>
+            </div>
+            <div class="energy-divider"></div>
+            <div class="energy-item">
+              <span class="energy-label">Sound Frequency</span>
+              <span id="aura-frequency" class="energy-val">528 Hz</span>
+            </div>
+          </div>
+          <p id="aura-description" class="aura-description-text">
+            Your aura is radiating vibrant golden hues. You are illuminating rooms, breaking through cloudy skies, and spreading pure light.
+          </p>
+        </div>
+
+        <!-- Tile 3: Color Palette Swatches -->
+        <div class="board-card palette-card">
+          <div class="palette-header">
+            <span class="card-glow-pill">Color Alchemy</span>
+            <span class="copy-hint">Click any swatch to copy HEX</span>
+          </div>
+          <div id="palette-swatches" class="palette-swatches">
+            <!-- Dynamically populated via app.js -->
+          </div>
+        </div>
+
+        <!-- Tile 4: Keyword Essence Tags -->
+        <div class="board-card tags-card">
+          <div class="card-glow-pill">Aura Essence</div>
+          <div id="aura-tags" class="aura-tags-container">
+            <!-- Dynamically populated tags -->
+          </div>
+        </div>
+
+        <!-- Tile 5: Aesthetic Imagery Collage -->
+        <div class="board-card gallery-card">
+          <div class="card-glow-pill">Visual Mood Board</div>
+          <div id="aura-gallery" class="aura-gallery-grid">
+            <!-- 4 Aesthetic Mood Images injected via app.js -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Floating Reset / Share Bar -->
+      <div class="board-footer-actions">
+        <button id="repeat-btn" class="footer-btn glow-btn">
+          <span>✦ Explore Another Mood</span>
+        </button>
+        <button id="copy-summary-btn" class="footer-btn glass-btn">
+          <span>📋 Copy Aura Reading</span>
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Notification Toast for Swatch / Link Copying -->
+  <div id="toast" class="toast">Copied to clipboard! ✦</div>
+
+  <!-- JavaScript Modules: Data first, then App logic -->
+  <script src="moods.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
